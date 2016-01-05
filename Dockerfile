@@ -1,4 +1,4 @@
-FROM discord/docker-elasticsearch:1.7.4
+FROM discord/elasticsearch-docker:1.7.4
 
 MAINTAINER pjpires@gmail.com
 
@@ -6,8 +6,7 @@ MAINTAINER pjpires@gmail.com
 ADD do_not_use.yml /elasticsearch/config/elasticsearch.yml
 
 # Install Elasticsearch plug-ins
-RUN /elasticsearch/bin/plugin install
-io.fabric8/elasticsearch-cloud-kubernetes/1.3.0 --verbose
+RUN /elasticsearch/bin/plugin install io.fabric8/elasticsearch-cloud-kubernetes/1.3.0 --verbose
 
 # Override elasticsearch.yml config, otherwise plug-in install will fail
 ADD elasticsearch.yml /elasticsearch/config/elasticsearch.yml
